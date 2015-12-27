@@ -8,7 +8,8 @@
             FeedURL: "notSet",
             ItemClass: "FeedItem",
             ItemTitleClass: "ItemTitle",
-            ItemContentClass: "FeedContent"
+            ItemContentClass: "ItemContent",
+            callback: "notSet"
         }, options );
         
         $.ajax({
@@ -16,11 +17,11 @@
             dataType: 'json',
             success: function (data) {
                 $.each(data.responseData.feed.entries, function() {
-                    $(container).append("<div class='"+settings.ItemClass+"'>");
-                    $(container).append("<div class='"+settings.ItemTitleClass+"'>"+$(this)[0].title+"</div>");
-                    $(container).append("<div class='"+settings.ItemContentClass+"'>"+$(this)[0].content+"</div>");
-                    $(container).append("</div>");
+                    $(container).append("<div class='"+settings.ItemClass+"'><div class='"+settings.ItemTitleClass+"'>"+$(this)[0].title+"</div><div class='"+settings.ItemContentClass+"'>"+$(this)[0].content+"</div></div>");
                 });
+                if (typeof settings.callback == 'function') { // make sure the callback is a function
+                    settings.callback.call(this); // brings the scope to the callback
+                }
             },
             error: function(error)
             {
