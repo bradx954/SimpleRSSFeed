@@ -32,4 +32,5 @@ body
 .ItemContent img
 {
     max-width: 590px;
+    height: auto;
 }
