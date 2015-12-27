@@ -1,4 +1,9 @@
-/* global jQuery */
+/* 
+Simple rss reader version 0.1 
+Author: Brad Baago
+more information at bradtech.ca
+no licensing of any kind use, distribute, and edit as you wish. 
+*/
 (function ( $ ) {
  
     $.fn.getFeed = function( options ) {
