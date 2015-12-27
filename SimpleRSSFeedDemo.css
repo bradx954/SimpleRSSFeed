@@ -5,8 +5,7 @@ body
 #FeedContainer
 {
     display: block;
-    width: 100%;
-    
+    margin: auto;
     clear: both;
 }
 .FeedItem
@@ -29,4 +28,8 @@ body
 {
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 18px;
+}
+.ItemContent img
+{
+    width: 100%;
 }
