@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta charset="utf-8"/>
         <title>SimpleRSSFeed Demo</title>
         <script src="jquery-2.1.4.min.js"></script>
         <script src="SimpleRSSFeed.js"></script>
@@ -10,7 +11,10 @@
             
         </div>
         <script>
-            $("#FeedContainer").getFeed("FeedContainer","FeedItem");
+            $( "#FeedContainer" ).getFeed({
+                FeedURL: "http://bradx954.blogspot.com/feeds/posts/default?alt=rss",
+                ItemClass: "FeedItem"
+            });
         </script>
     </body>
 </html>
