@@ -1,0 +1,36 @@
+body
+{
+    background-color: grey;
+}
+#FeedContainer
+{
+    display: block;
+    margin: auto;
+    clear: both;
+}
+.FeedItem
+{
+    display: inline-block;
+    float: left;
+    width: 600px;
+    padding: 5px;
+    margin: 5px;
+    background-color: white;
+}
+.ItemTitle
+{
+    margin: 5px;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    text-align: center;
+    font-size: 36px;
+}
+.ItemContent
+{
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 18px;
+}
+.ItemContent img
+{
+    max-width: 590px;
+    height: auto;
+}

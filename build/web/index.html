@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>SimpleRSSFeed Demo</title>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-71040357-3', 'auto');
+    ga('send', 'pageview');
+    </script>
+    <script src="jquery-2.1.4.min.js"></script>
+    <script src="imagesloaded.pkgd.min.js"></script>
+    <script src="masonry.pkgd.min.js"></script>
+    <script src="SimpleRSSFeed.js"></script>
+    <link rel="stylesheet" type="text/css" href="SimpleRSSFeedDemo.css">
+</head>
+
+<body>
+    <p>Download the plugin: <a href="SimpleRSSFeed.js">here</a></p>
+    <h3>Usage</h3>
+    <pre>
+        Include scripts in the header.
+        &lt;script src="jquery-2.1.4.min.js">&lt;/script>//Required
+        &lt;script src="imagesloaded.pkgd.min.js">&lt;/script>//Optional for masonry
+        &lt;script src="masonry.pkgd.min.js">&lt;/script>//Optional
+        &lt;script src="SimpleRSSFeed.js">&lt;/script>//Required
+    </pre>
+    <pre>
+        &lt;!-- Make the container.>
+        &lt;div id="FeedContainer">
+        &lt;/div>
+    </pre>
+    <pre>
+        //Load the feed.
+        $("#FeedContainer").getFeed({
+            FeedURL: &ltYour Feed URL>,
+            ItemClass: &ltYour style class for each feed item>,
+            ItemTitleClass: &ltYour style class for each feeed items title>,
+            ItemContentClass: &ltYour style class for each feeed items content>,
+            //Anycall back function you want to run when feed is retrieved.
+            callback: function () {
+                //Sets up masonary layout.
+                $grid = $('#FeedContainer').masonry({
+                    itemSelector: '.FeedItem'
+                });
+                //Relayout when images are loaded.
+                $grid.imagesLoaded().progress( function() {
+                    $grid.masonry('layout');
+                });
+            }
+        });
+    </pre>
+    <p>Download the demo stylesheet: <a href="SimpleRSSFeedDemo.css">here</a></p>
+    <h3>Live Demo</h3>
+    <input id="feedURL"type="text" value="http://rss.cbc.ca/lineup/topstories.xml" style="width: 75%;"></input>
+    <button style="width: 20%;" onclick="refreshFeed()">getFeed</button>
+    <hr/>
+    <div id="FeedContainer">
+
+    </div>
+    <script>
+    var $grid;
+    $( document ).ready(function() {
+        refreshFeed();
+    });
+    function refreshFeed() {
+        if(typeof $grid != 'undefined')
+        {
+            $grid.masonry('destroy');
+        }
+        $("#FeedContainer").getFeed({
+            FeedURL: $("#feedURL").val(),
+            ItemClass: "FeedItem",
+            ItemTitleClass: "ItemTitle",
+            ItemContentClass: "ItemContent",
+            callback: function () {
+                $grid = $('#FeedContainer').masonry({
+                    itemSelector: '.FeedItem'
+                });
+                $grid.imagesLoaded().progress( function() {
+                    $grid.masonry('layout');
+                });
+            }
+        });
+        
+    }
+    </script>
+</body>
+
+</html>
